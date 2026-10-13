@@ -11,10 +11,9 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
 
-        Vector2 movement = new Vector2(horizontal, vertical).normalized;
+        Vector2 movement = new Vector2(vertical, 0f).normalized * -1f;
 
         transform.Translate(movement * speed * Time.deltaTime);
 
