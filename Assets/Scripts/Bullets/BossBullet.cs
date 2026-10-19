@@ -27,7 +27,7 @@ public class BossBullet : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    private async Awaitable OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
@@ -37,7 +37,7 @@ public class BossBullet : MonoBehaviour
                 playerLives = other.GetComponentInParent<PlayerLives>();
 
             if (playerLives != null)
-                playerLives.TakeDamage();
+                await playerLives.TakeDamage();
 
             ReturnToPool();
         }

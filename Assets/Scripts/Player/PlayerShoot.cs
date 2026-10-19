@@ -29,6 +29,11 @@ public class PlayerShoot : MonoBehaviour
             return;
         }
 
+        if (GameManager.Instance != null && GameManager.Instance.GameEnded)
+        {
+            return;
+        }
+
         GameObject bullet = bulletPool.GetBullet();
 
         bullet.transform.position = firePoint.position;

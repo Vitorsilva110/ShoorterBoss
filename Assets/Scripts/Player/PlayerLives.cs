@@ -1,6 +1,7 @@
 
 using UnityEngine;
 using UnityEngine.UI;
+using System.Threading;
 
 public class PlayerLives : MonoBehaviour
 {
@@ -14,26 +15,35 @@ public class PlayerLives : MonoBehaviour
     void Start()
     {
         currentLives = maxLives;
-        UpdateLifeUI();
+        StarUILife();
     }
 
-    public void TakeDamage()
+    public async Awaitable TakeDamage()
     {
+        using var ct = new CancellationTokenSource();
         if (currentLives <= 0)
             return;
 
         currentLives--;
-        UpdateLifeUI();
+        DecreaseUILife();
 
         Debug.Log("Vidas restantes: " + currentLives);
 
         if (currentLives <= 0)
         {
-            Debug.Log("DERROTA!");
+            if (GameManager.Instance != null)
+            {
+                await Awaitable.WaitForSecondsAsync(.2f);
+                GameManager.Instance.LoseGame();
+            }
+            else
+            {
+                Debug.LogError("GameManager não encontrado!");
+            }
         }
     }
 
-    void UpdateLifeUI()
+    void DecreaseUILife()
     {
         if (lifeIcons == null)
             return;
@@ -42,7 +52,21 @@ public class PlayerLives : MonoBehaviour
         {
             if (lifeIcons[i] != null)
             {
-                lifeIcons[i].enabled = i < currentLives;
+                lifeIcons[i].gameObject.SetActive(i < currentLives);
+            }
+        }
+    }
+
+    private void StarUILife()
+    {
+        if (lifeIcons == null)
+            return;
+
+        for (int i = 0; i < lifeIcons.Length; i++)
+        {
+            if (lifeIcons[i] != null)
+            {
+                lifeIcons[i].gameObject.SetActive(true);
             }
         }
     }

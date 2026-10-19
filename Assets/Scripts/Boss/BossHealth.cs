@@ -49,7 +49,12 @@ public class BossHealth : MonoBehaviour
         Debug.Log("Nível de vida: " + CurrentLifeState);
 
         if (currentHealth <= 0)
-            Debug.Log("Boss derrotado!");
+        {
+            if (GameManager.Instance != null)
+                GameManager.Instance.WinGame();
+            else
+                Debug.LogError("GameManager não encontrado!");
+        }
     }
 
     void UpdateLifeState()
