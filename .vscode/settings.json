@@ -67,5 +67,5 @@
         "*.sln": "*.csproj",
         "*.slnx": "*.csproj"
     },
-    "dotnet.defaultSolution": "ShoorterBoss.slnx"
+    "dotnet.defaultSolution": "ShooterBoss.slnx"
 }

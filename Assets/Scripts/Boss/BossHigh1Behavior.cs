@@ -5,8 +5,11 @@ public class BossHigh1Behavior : BossBehaviorBase
 {
     public float moveSpeed = 1f;
     public float verticalLimit = 3f;
+    public float shootInterval = 1f;
 
     private int direction = 1;
+    private float shootTimer;
+    private BossShooter shooter;
 
     public override void OnStateEnter(
         Animator animator,
@@ -14,7 +17,10 @@ public class BossHigh1Behavior : BossBehaviorBase
         int layerIndex)
     {
         base.OnStateEnter(animator, stateInfo, layerIndex);
-        direction = 1;
+
+        direction = -1;
+        shootTimer = 0f;
+        shooter = animator.GetComponent<BossShooter>();
     }
 
     public override void OnStateUpdate(
@@ -38,5 +44,16 @@ public class BossHigh1Behavior : BossBehaviorBase
         }
 
         animator.transform.position = position;
+
+        if (shooter != null)
+        {
+            shootTimer += Time.deltaTime;
+
+            if (shootTimer >= shootInterval)
+            {
+                shooter.Shoot();
+                shootTimer = 0f;
+            }
+        }
     }
 }

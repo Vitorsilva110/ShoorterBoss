@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4979544189332646356}
   - component: {fileID: 1280157299861132534}
   - component: {fileID: 610290760130571812}
+  - component: {fileID: 5362344281068768162}
   m_Layer: 0
   m_Name: PlayerBullet
   m_TagString: Untagged
@@ -157,3 +158,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &5362344281068768162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4305826811735906206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32b849acaf5af424a9ff5d32cacb2cec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerBullet
+  damage: 10
+  speed: 10
+  lifeTime: 3

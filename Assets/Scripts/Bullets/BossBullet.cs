@@ -16,7 +16,7 @@ public class BossBullet : MonoBehaviour
 
     void Update()
     {
-        transform.Translate(direction * speed * Time.deltaTime);
+        transform.Translate(direction * speed * Time.deltaTime, Space.World);
 
         if (transform.position.x < -12f ||
             transform.position.x > 12f ||
@@ -31,6 +31,14 @@ public class BossBullet : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            PlayerLives playerLives = other.GetComponent<PlayerLives>();
+
+            if (playerLives == null)
+                playerLives = other.GetComponentInParent<PlayerLives>();
+
+            if (playerLives != null)
+                playerLives.TakeDamage();
+
             ReturnToPool();
         }
     }
