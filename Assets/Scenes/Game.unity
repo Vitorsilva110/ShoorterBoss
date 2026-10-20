@@ -2564,7 +2564,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0c7fbddc949ec0449b427e0b97d1f7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerLives
-  maxLives: 3
+  maxLives: 100
   lifeIcons:
   - {fileID: 1169300247}
   - {fileID: 912889467}
